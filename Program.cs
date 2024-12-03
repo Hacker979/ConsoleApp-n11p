@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,23 +8,34 @@ namespace ConsoleApp_n11p
 {
     class Program
     {
-        static void swap(ref string x, ref string y)
+        static void Swap(ref int a, ref int b)
         {
-            string p = x;
-            x = y;
-            y = p;
+            int p = a;
+            a = b;
+            b = p;
+        }
+        static int Input(string a)
+        {
+            Console.Write(a);
+            return int.Parse(Console.ReadLine());
         }
         /// <summary>
-        /// Задача 1. Поменять местами содержимое двух строковых переменных.
+        /// Задача 2. Составить программу,
+        /// в результате которой величина а меняется значением с величиной b,
+        /// а величина c — с величиной d.
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            string st1 = "привет";
-            string st2 = "пока";
-            Console.WriteLine($"до изменений {st1} {st2}");
-            swap(ref st1, ref st2);
-            Console.Write($"после изменений {st1} {st2}");
+            int a = Input("Введите 1 число:");
+            int b = Input("Введите 2 число:");
+            int c = Input("Введите 3 число:");
+            int d = Input("Введите 4 число:");
+
+            Console.WriteLine($"до изменений {a} {b} {c} {d}");
+            Swap(ref a, ref b);
+            Swap(ref c, ref d);
+            Console.Write($"после изменений {a} {b} {c} {d}");
             Console.Read();
         }
     }
