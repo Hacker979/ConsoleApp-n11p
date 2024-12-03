@@ -8,23 +8,35 @@ namespace ConsoleApp_n11p
 {
     class Program
     {
-        static void swap(ref string x, ref string y)
+        static int Max(int a, int b)
         {
-            string p = x;
-            x = y;
-            y = p;
+            return a > b ? a : b;
+        }
+        static void Swap(ref int a, ref int b, ref int c)
+        {
+            int max = Max(Max(a, b),c);
+            int p = a;
+            a = b;
+            b = p;
+        }
+        static int Input(string a)
+        {
+            Console.Write(a);
+            return int.Parse(Console.ReadLine());
         }
         /// <summary>
-        /// Задача 1. Поменять местами содержимое двух строковых переменных.
+        /// Задача 3. Ввести три целых числа и вывести их в порядке возрастания значений.
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            string st1 = "привет";
-            string st2 = "пока";
-            Console.WriteLine($"до изменений {st1} {st2}");
-            swap(ref st1, ref st2);
-            Console.Write($"после изменений {st1} {st2}");
+            int a = Input("Введите 1 число:");
+            int b = Input("Введите 2 число:");
+            int c = Input("Введите 3 число:");
+
+            Console.WriteLine($"до изменений {a} {b} {c}");
+            Swap(ref a, ref b, ref c);
+            Console.Write($"после изменений {a} {b} {c}");
             Console.Read();
         }
     }
