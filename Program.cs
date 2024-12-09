@@ -8,44 +8,47 @@ namespace ConsoleApp_n11p
 {
     class Program
     {
-        static int MaxTwo(int a, int b)
+        static double Input(string msg)
         {
-            return a > b ? a : b; // Возвращает большее из двух чисел
+            Console.Write(msg);
+            return double.Parse(Console.ReadLine());
         }
 
-        static int FindMax(int a, int b, int c, int d, int e, int f, int g, int h)
+        static double Dist(double x1, double y1, double x2, double y2)
         {
-            int max1 = MaxTwo(a, b);
-            int max2 = MaxTwo(c, d);
-            int max3 = MaxTwo(e, f);
-            int max4 = MaxTwo(g, h);
-            int max = MaxTwo(max1, MaxTwo(max2, MaxTwo(max3, max4)));
-            return max;
+            return Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
         }
 
-        // Метод для ввода числа
-        static int Input(string prompt)
+        static string Type(double a, double b, double c)
         {
-            Console.Write(prompt);
-            return int.Parse(Console.ReadLine());
+            if (a == b && b == c)
+                return "Равносторонний";
+            if (a == b || b == c || a == c)
+                return "Равнобедренный";
+            if (a * a + b * b == c * c || b * b + c * c == a * a || a * a + c * c == b * b)
+                return "Прямоугольный";
+            return "Обычный";
         }
         /// <summary>
-        /// Задача 2. Даны 8 различных чисел. Определить максимальное из них, используя функцию определения максимального из двух чисел.
+        /// Задача 3. Треугольник задан координатами его вершин. Определить вид треугольника (равнобедренный, равносторонний ,
+        /// прямоугольный или обычный). Длину стороны определять с помощью функции.
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            int a = Input("Введите 1 число: ");
-            int b = Input("Введите 2 число: ");
-            int c = Input("Введите 3 число: ");
-            int d = Input("Введите 4 число: ");
-            int e = Input("Введите 5 число: ");
-            int f = Input("Введите 6 число: ");
-            int g = Input("Введите 7 число: ");
-            int h = Input("Введите 8 число: ");
+            double x1 = Input("Введите x1: ");
+            double y1 = Input("Введите y1: ");
+            double x2 = Input("Введите x2: ");
+            double y2 = Input("Введите y2: ");
+            double x3 = Input("Введите x3: ");
+            double y3 = Input("Введите y3: ");
 
-            int max = FindMax(a, b, c, d, e, f, g, h);
-            Console.WriteLine($"Максимальное число: {max}");
+            double a = Dist(x1, y1, x2, y2);
+            double b = Dist(x2, y2, x3, y3);
+            double c = Dist(x3, y3, x1, y1);
+
+            string type = Type(a, b, c);
+            Console.WriteLine($"Тип треугольника: {type}");
             Console.ReadLine();
         }
     }
