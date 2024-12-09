@@ -8,55 +8,39 @@ namespace ConsoleApp_n11p
 {
     class Program
     {
-        static double Input(string sideName)
+        static double Input(string msg)
         {
-            Console.Write($"{sideName}: ");
+            Console.Write(msg);
             return double.Parse(Console.ReadLine());
         }
-
-        static double P(double a, double b, double c)
+        static double Dist(double x1, double y1, double x2, double y2)
         {
-            return a + b + c;
+            return Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
         }
 
-        static double S(double a, double b, double c)
+        static double P(double x1, double y1, double x2, double y2, double x3, double y3)
         {
-            double s = (a + b + c) / 2;
-            return Math.Sqrt(s * (s - a) * (s - b) * (s - c));
-        }
-
-        static void Sum(double a1, double b1, double c1, double a2, double b2, double c2)
-        {
-            double p1 = P(a1, b1, c1);
-            double s1 = S(a1, b1, c1);
-            double p2 = P(a2, b2, c2);
-            double s2 = S(a2, b2, c2);
-
-            double totalP = p1 + p2;
-            double totalS = s1 + s2;
-
-            Console.WriteLine($"Сумма периметров: {totalP}");
-            Console.WriteLine($"Сумма площадей: {totalS}");
+            double side1 = Dist(x1, y1, x2, y2);
+            double side2 = Dist(x2, y2, x3, y3);
+            double side3 = Dist(x3, y3, x1, y1);
+            return side1 + side2 + side3;
         }
         /// <summary>
-        /// Задача 5. Даны стороны двух треугольников. Найти сумму их периметров и сумму их площадей.
-        /// (Определить вспомогательный метод для расчета периметра и площади треугольника по его сторонам.)
+        /// Задача 6. Найти периметр треугольника, заданного координатами своих вершин.
+        /// (Определить функцию для расчета длины отрезка по координатам его вершин.)
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите стороны первого треугольника:");
-            double a1 = Input("Сторона a");
-            double b1 = Input("Сторона b");
-            double c1 = Input("Сторона c");
+            double x1 = Input("Введите x1: ");
+            double y1 = Input("Введите y1: ");
+            double x2 = Input("Введите x2: ");
+            double y2 = Input("Введите y2: ");
+            double x3 = Input("Введите x3: ");
+            double y3 = Input("Введите y3: ");
 
-            Console.WriteLine("Введите стороны второго треугольника:");
-            double a2 = Input("Сторона a");
-            double b2 = Input("Сторона b");
-            double c2 = Input("Сторона c");
-
-            Sum(a1, b1, c1, a2, b2, c2);
-
+            double perimeter = P(x1, y1, x2, y2, x3, y3);
+            Console.WriteLine($"Периметр треугольника: {perimeter}");
             Console.ReadLine();
         }
     }
